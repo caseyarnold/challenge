@@ -30,9 +30,12 @@ class FormController {
         }
 
         // send email stage
-        // this code could be implemented with saas like AWS SES 
-        // or sendgrid or even just with php's mail function
-
+        // ideally this portion could be implemented with saas like AWS SES 
+        // or sendgrid
+        $message = "A new project called {$form->project_name} has been submitted into the database for review";
+        $message = wordwrap($message, 100);
+        mail("jobform@voices.com", "New Form Submission", $message);
+        
         return JsonResponse([
             "status" => "success",
             "message" => "The response has been saved. Thank you!"

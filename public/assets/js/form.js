@@ -11,6 +11,22 @@ function calculateWords(scriptField) {
     return words.length === 1 && words[0] === '' ? 0 : words.length;
 }
 
+function hideErrors() {
+    document.querySelectorAll("div.error-message").forEach(node => node.remove());
+    document.querySelectorAll(".has-error").forEach(node => node.classList.remove("has-error"));
+}
+
+function showError(field, message) {
+    if (document.querySelector("div.error-message[for='" + field + "']") !== null) return;
+    let errorField = document.querySelector("[name='" + field + "']");
+    if(errorField.type == "radio") {
+        errorField = errorField.closest(".radio-selection-box-container");
+    }
+
+    errorField.classList.add("has-error");
+    errorField.insertAdjacentHTML('afterend', "<div class='error-message' for='" + field + "'>" + message + "</div>");
+}
+
 window.addEventListener("load", function() {
     // fields 
     const resetButton = document.querySelector("input[type='reset']");
@@ -36,11 +52,12 @@ window.addEventListener("load", function() {
 
     // function to reset form
     function resetForm() {
+        hideErrors();
         document.querySelectorAll(".selected").forEach(node => node.classList.remove("selected"));
         const province = document.querySelector("select[name='province']");
         province.innerHTML = "<option disabled selected>" + defaultProvinceValue + "</option>";
         document.querySelectorAll("select").forEach(node => node.classList.add("initial"));
-    }    
+    }
 
     // add functionality to allow click anywhere on .budget-selection-box
     document.querySelectorAll(".radio-selection-box").forEach(node => {
@@ -103,29 +120,29 @@ window.addEventListener("load", function() {
     // submit
     document.querySelector("form").addEventListener("submit", function(e) {
         e.preventDefault();
-        let errors = [];
+        let errors = {};
 
         // validators for form elements
         // name: required, max <300
         if(nameField.value.length === 0) {
-            errors.push("Please enter a script name for your project.");
+            errors["project_name"] = "Please enter a script name for your project.";
         } else if(nameField.value.length > 300 || nameField.value.length === 0) {
-            errors.push("Please enter a script name field of less than 300 characters.");
+            errors["project_name"] = "Please enter a script name field of less than 300 characters.";
         }
 
         // script: max <2000
         if(scriptField.value.length > 4000) {
-            errors.push("Please enter a script with less than 4,000 characters.");
+            errors["script"] = "Please enter a script with less than 4,000 characters.";
         }
 
         // country
         if(countryField.value === defaultCountryValue) {
-            errors.push("Please select a country");
+            errors["country"] = "Please select a country";
         }
 
         // state
         if(provinceField.value === defaultProvinceValue) {
-            errors.push("Please select a state/province.");
+            errors["province"] = "Please select a state/province.";
         }
 
         // file: format by type
@@ -137,18 +154,22 @@ window.addEventListener("load", function() {
             const file = fileField.files[0];
             const fileExtension = file.name.slice(((file.name.lastIndexOf(".") - 1) >>> 0) + 2).toLowerCase();
             if (!allowedFileTypes.includes(fileExtension)) {
-                errors.push("You can only upload one of the following types of files: " + allowedFileTypes.join(", "));
+                errors["file"] = "You can only upload one of the following types of files: " + allowedFileTypes.join(", ");
             }
         }
         
         // budget
         const budgetField = document.querySelector("input[name='budget']:checked");
         if (budgetField === null) {
-            errors.push("Please select a budget for your project.");
+            errors["budget"] = "Please select a budget for your project.";
         }
 
-        if(errors.length > 0) {
-            errors.forEach(error => alert(error));
+        if(Object.keys(errors).length > 0) {
+            hideErrors();
+            Object.entries(errors).forEach(([field, message]) => {
+                showError(field, message)
+            });
+
             return;
         }
 
@@ -164,9 +185,8 @@ window.addEventListener("load", function() {
                 resetButton.click();
             } else {
                 if(data.errors) {
-                    console.log(data.errors)
                     for(let errorField in data.errors) {
-                        alert(data.errors[errorField]);
+                        showError(errorField, data.errors[errorField]);
                     }
                 } else {
                     alert(data.message);

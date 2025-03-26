@@ -126,3 +126,7 @@ div#right-side div#location-information select {
     margin-right: .5rem;
     font-size: 1.1rem;
 }
+
+.has-error {
+    border: 3px solid red !important;
+}

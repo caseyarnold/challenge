@@ -10,3 +10,5 @@ This command should be run next, if it fails, you may need to wait ~30 seconds f
 `docker exec -it challenge-php-1 php /var/www/src/migrations/form.php up` 
 
 You can now navigate to http://localhost:8080 and the form should be fully functional and usable!
+
+# Areas of Improvement
