@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # PHP
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/var/www/src
+      - ./public:/var/www/html/
+    networks:
+      - formnetwork
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=form
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "8080:80"
+
+  # Mysql
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: form
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - formnetwork
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data:  # mysql store
+
+networks:
+  formnetwork:  # network

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/form.css" />
+    <script src="/assets/js/form.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="left-side">
+            <div id="text-container">
+                <h2>Let us know your project requirements</h2>
+            </div>
+        </div>
+        <div id="right-side">
+            <div id="form-container">
+                <form action="/" method="POST">
+                    <div class="form-element">
+                        <label for="name" class="heading">What's your project name?</label>
+                        Provide a short, descriptive title to attract talent.
+                        <input name="project_name" value="" placeholder='For example, "30 Second Radio Spot" or "Corporate Training Video"' />
+                    </div>
+                    <div class="form-element">
+                        <label for="script" class="heading">Small Script <span class="optional">Optional</span></label>
+                        Include a small piece of a script you would like talent to read.
+                        <textarea name="script" placeholder="Type to paste a sample script here."></textarea>
+                        <div id="word-counter">0 words</div>
+                    </div>
+                    <div id="location-information" class="form-element">
+                        <div>
+                            <label for="country" class="heading smaller">Country</label>
+                            <select name="country" class="initial">
+                                <option disabled selected>Select your country</option>
+                                <option>USA</option>
+                                <option>Canada</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="province" class="heading smaller">State/Province</label>
+                            <select name="province" class="initial">
+                                <option disabled selected>Select your state/province</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-element">
+                        <label for="file" class="heading">Please upload your reference file here <span class="optional">Optional</span></label>
+                        <span class="smaller grey">(Max 20mb)</span>
+                        <div class="file-selector-container">
+                            <label for="file-upload" class="file-upload-label">
+                                <span class="up-arrow">↑</span> Browse for Files
+                            </label>
+                            <input type="file" id="file-upload" name="file" class="file-upload-input">
+                        </div>
+                    
+                    </div>
+                    <div id="budget-information" class="form-element"></div>
+                        <label for="budget" class="heading">What's your budget?</label>
+                        Minimum cost is $5 USD.
+                        <div class="radio-selection-box-container">
+                            <div class="radio-selection-box">
+                                <input type="radio" name="budget" value="5to99" />
+                                <label for="budget">$5 - $99</label>
+                            </div>
+                            <div class="radio-selection-box">
+                                <input type="radio" name="budget" value="100to249" />
+                                <label for="budget">$100 - $249</label>
+                            </div>
+                            <div class="radio-selection-box">
+                                <input type="radio" name="budget" value="250to499" />
+                                <label for="budget">$250 - $499</label>
+                            </div>    
+                        </div>
+                        <div id="reset-submit-container">
+                            <input type="reset" value="Reset Form" />
+                            <input type="submit" value="Submit" />
+                        </div>    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

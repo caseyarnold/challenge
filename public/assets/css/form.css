@@ -1,0 +1,128 @@
+input:active, select:active, textarea:active {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+input,
+textarea,
+select {
+    box-sizing: border-box;
+    padding: .5rem;
+    font-family: Helvetica, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius:.3rem;
+    border: 1px solid #ddd;
+    margin: 5px 0 0 0;
+    font-size:1rem;
+    display: block;
+    outline: none;
+}
+
+input:not([type="radio"]),
+textarea,
+select {
+    width: 100%;
+}
+
+textarea {
+    min-height: 7.5rem;
+}
+
+input[type="reset"],
+input[type="reset"]:active,
+input[type="reset"]:focus {
+    width: fit-content;
+    display: inline-block;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+input:active,
+select:active,
+textarea:active,
+input:focus,
+select:focus,
+textarea:focus,
+input:hover,
+select:hover,
+textarea:hover
+{
+    padding: 0.5rem;
+    outline: none;
+    margin: 5px 0 0 0;
+    box-sizing: border-box;
+    border: 1px solid #0073c2; /* Optional: Change border color on hover */
+    box-shadow: 0 0 0 2px #0073c2; /* Simulate 3px border on hover */
+}
+
+input[type="radio"],
+input[type="radio"]:focus {
+    display: inline-block;
+    padding: .5rem;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+}
+
+input[type="reset"],
+input[type="submit"] {
+    border: none;
+    padding: initial;
+    margin: initial;
+    box-shadow: none;
+}
+
+input[type="submit"],
+input[type="submit"]:active,
+input[type="submit"]:focus {
+    max-width: 20%;
+    background-color: #0073c2;
+    color: #fff;
+    margin: 0;
+    border: none;
+    padding: .5rem;
+}
+
+input[type="submit"]:hover {
+    background-color: #0073a0;
+}
+
+select {
+    background: none;
+}
+
+select.initial {
+    color: #7a6e6e;
+}
+
+div#right-side div#location-information select {
+    width: 100%;
+}
+
+.file-selector-container {
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.file-upload-label {
+    cursor: pointer;
+    background-color: #0073a0;
+    color: white;
+    padding: .5rem 1.1rem;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    font-size: .9rem;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.up-arrow {
+    margin-right: .5rem;
+    font-size: 1.1rem;
+}
