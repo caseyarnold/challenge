@@ -59,6 +59,12 @@ window.addEventListener("load", function() {
         document.querySelectorAll("select").forEach(node => node.classList.add("initial"));
     }
 
+    // file field
+    const fileFieldContainer = document.querySelector(".file-selector-container");
+    fileFieldContainer.addEventListener("click", function(e) {
+        fileFieldContainer.querySelector("input[type='file']").click();
+    });
+
     // add functionality to allow click anywhere on .budget-selection-box
     document.querySelectorAll(".radio-selection-box").forEach(node => {
         node.onclick = function() {
